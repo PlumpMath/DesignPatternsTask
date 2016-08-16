@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebdriverTests", "WebdriverTests\WebdriverTests.csproj", "{CAB4AADC-A7EE-4273-A914-5FB7468F6BAD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{E1ACAD96-674E-47B6-B314-F41038F8119E}"
+	ProjectSection(SolutionItems) = preProject
+		Tools\geckodriver.exe = Tools\geckodriver.exe
+		Tools\MicrosoftWebDriver.exe = Tools\MicrosoftWebDriver.exe
+		Tools\nodeConfig.json = Tools\nodeConfig.json
+		Tools\nodeConfig_VMUbuntu.json = Tools\nodeConfig_VMUbuntu.json
+		Tools\nodeConfig_VMWin10.json = Tools\nodeConfig_VMWin10.json
+		Tools\selenium-server-standalone.jar = Tools\selenium-server-standalone.jar
+		Tools\StartHubAndNodes.bat = Tools\StartHubAndNodes.bat
+		Tools\StartNodeOnVMUbuntu.sh = Tools\StartNodeOnVMUbuntu.sh
+		Tools\StartNodeOnVMWin10.bat = Tools\StartNodeOnVMWin10.bat
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CAB4AADC-A7EE-4273-A914-5FB7468F6BAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAB4AADC-A7EE-4273-A914-5FB7468F6BAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAB4AADC-A7EE-4273-A914-5FB7468F6BAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAB4AADC-A7EE-4273-A914-5FB7468F6BAD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

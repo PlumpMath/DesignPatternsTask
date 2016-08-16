@@ -1,0 +1,19 @@
+{
+  "capabilities": [
+    {
+      "browserName": "firefox",
+      "maxInstances": 2,
+      "platform": "Linux"
+    },
+    {
+      "browserName": "chrome",
+      "maxInstances": 2,
+      "platform": "Linux"
+    }
+  ],
+  "configuration": {
+    "maxSession": 3,
+    "port": 5555,
+    "hub": "http://10.26.13.108:4444"
+  }
+}
