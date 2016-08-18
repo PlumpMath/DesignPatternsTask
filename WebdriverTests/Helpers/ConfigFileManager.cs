@@ -16,6 +16,6 @@ namespace WebdriverTests.Helpers
         public static bool UseSeleniumGrid => bool.Parse(ConfigurationManager.AppSettings["UseSeleniumGrid"]);
         public static bool UseSauceLabs => bool.Parse(ConfigurationManager.AppSettings["UseSauceLabs"]);
         public static Uri GridHubUri => new Uri(ConfigurationManager.AppSettings["GridHubUrl"]);
-        public static Uri SauceLabsHubUrl => new Uri(ConfigurationManager.AppSettings["SauceLabsHubUrl"]);
+        public static Uri SauceLabsHubUri => new Uri(ConfigurationManager.AppSettings["SauceLabsHubUrl"]);
     }
 }

@@ -2,77 +2,46 @@
 using System.Drawing.Imaging;
 using System.IO;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Edge;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
-using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.Extensions;
 using WebdriverTests.Helpers;
+using WebdriverTests.Utils.DriverCreators;
 
 namespace WebdriverTests.Utils
 {
-    public static class Browser
+    public class Browser
     {
+        private static readonly WebDriverCreator DriverCreator;
+
         private static Lazy<IWebDriver> lazyDriver;
         public static IWebDriver Driver => lazyDriver.Value;
 
         public static void InitDriver()
         {
-            lazyDriver = new Lazy<IWebDriver>(SetUpBrowser);
+            lazyDriver = new Lazy<IWebDriver>(DriverCreator.CreateDriver);
         }
 
-        private static IWebDriver SetUpBrowser()
+        static Browser()
         {
-            if (ConfigFileManager.UseSeleniumGrid)
-                return SetupRemoteWebdriver();
-
             switch (ConfigFileManager.Browser)
             {
                 case BrowserType.Firefox:
-                    return new FirefoxDriver();
+                    DriverCreator = new FirefoxDriverCreator();
+                    break;
                 case BrowserType.Chrome:
-                    return new ChromeDriver();
+                    DriverCreator = new ChromeDriverCreator();
+                    break;
                 case BrowserType.InternetExplorer:
-                    return new InternetExplorerDriver();
+                    DriverCreator = new IEDriverCreator();
+                    break;
                 case BrowserType.Edge:
-                    return new EdgeDriver();
+                    DriverCreator = new EdgeDriverCreator();
+                    break;
                 default:
-                    throw new ArgumentException("Incorrect value of WebDriver");
+                    throw new ArgumentException("Incorrect value of Browser");
             }
         }
 
-        private static RemoteWebDriver SetupRemoteWebdriver()
-        {
-            DesiredCapabilities caps;
-            switch (ConfigFileManager.Browser)
-            {
-                case BrowserType.Firefox:
-                    caps = DesiredCapabilities.Firefox();
-                    break;
-                case BrowserType.Chrome:
-                    caps = DesiredCapabilities.Chrome();
-                    break;
-                case BrowserType.InternetExplorer:
-                    caps = DesiredCapabilities.InternetExplorer();
-                    break;
-                case BrowserType.Edge:
-                    caps = DesiredCapabilities.Edge();
-                    break;
-                default:
-                    throw new ArgumentException("Incorrect value of WebDriver");
-            }
-            caps.SetCapability(CapabilityType.Platform, ConfigFileManager.Platform);
-
-            if (ConfigFileManager.UseSauceLabs)
-            {
-                caps.SetCapability("username", ConfigFileManager.SauceLabsUsername);
-                caps.SetCapability("accessKey", ConfigFileManager.SauceLabsAccessKey);
-                return new RemoteWebDriver(ConfigFileManager.SauceLabsHubUrl, caps);
-            }
-            return new RemoteWebDriver(ConfigFileManager.GridHubUri, caps);
-        }
-
+        // todo: move to decorator
         public static void TakeScreenshot(string name)
         {
             string screenshotsDirectory = AppDomain.CurrentDomain.BaseDirectory + "\\Screenshots\\";
