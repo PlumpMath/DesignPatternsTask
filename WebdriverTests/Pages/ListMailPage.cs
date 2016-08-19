@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
 using WebdriverTests.Utils;
 
@@ -36,10 +35,10 @@ namespace WebdriverTests.Pages
 
         public ListMailPage SelectMessagesUsingMousePlusShift(int from, int count)
         {
-            new Actions(Browser.Driver).Click(checkboxes[from]).Perform();
+            Browser.Driver.Actions.Click(checkboxes[from]).Perform();
 
             if (count > 1)
-                new Actions(Browser.Driver)
+                Browser.Driver.Actions
                     .KeyDown(Keys.Shift)
                     .Click(checkboxes[from + count - 1])
                     .KeyUp(Keys.Shift).Perform();
@@ -47,10 +46,10 @@ namespace WebdriverTests.Pages
             return this;
         }
 
-        public ListMailPage DragAndDropMessage(int index, DroppableElements folder)
+        public ListMailPage DragAndDropMessage(int index, DroppableElements element)
         {
             IWebElement droppableElement;
-            switch (folder)
+            switch (element)
             {
                 case DroppableElements.InboxFolder:
                     droppableElement = InboxLink;
@@ -71,10 +70,10 @@ namespace WebdriverTests.Pages
                     droppableElement = DeleteLink;
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(folder), folder, "Wrong folder");
+                    throw new ArgumentOutOfRangeException(nameof(element), element, "Wrong droppable element");
             }
 
-            new Actions(Browser.Driver)
+            Browser.Driver.Actions
                 .ClickAndHold(messages[index])
                 .MoveByOffset(-50, 0).MoveByOffset(0, 50)
                 .MoveToElement(droppableElement).Click()

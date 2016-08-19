@@ -73,12 +73,12 @@
     <Compile Include="Helpers\ConfigFileManager.cs" />
     <Compile Include="Tests\HoverButtonTests.cs" />
     <Compile Include="Tests\TestBase.cs" />
+    <Compile Include="Utils\CustomWebDriver.cs" />
     <Compile Include="Utils\DriverCreators\ChromeDriverCreator.cs" />
     <Compile Include="Utils\DriverCreators\EdgeDriverCreator.cs" />
     <Compile Include="Utils\DriverCreators\FirefoxDriverCreator.cs" />
     <Compile Include="Utils\DriverCreators\IEDriverCreator.cs" />
     <Compile Include="Utils\DriverCreators\WebDriverCreator.cs" />
-    <Compile Include="Utils\WebDriverExtensions.cs" />
     <Compile Include="Tests\SendMailTests.cs" />
   </ItemGroup>
   <ItemGroup>

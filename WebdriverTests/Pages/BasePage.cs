@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium.Support.Extensions;
-using OpenQA.Selenium.Support.PageObjects;
-using WebdriverTests.Utils;
+﻿using WebdriverTests.Utils;
 
 namespace WebdriverTests.Pages
 {
@@ -10,7 +8,7 @@ namespace WebdriverTests.Pages
 
         protected BasePage()
         {
-            PageFactory.InitElements(Browser.Driver, this);
+            Browser.Driver.InitElements(this);
         }
 
         public BasePage OpenPage(string url)

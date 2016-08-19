@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.Extensions;
 using OpenQA.Selenium.Support.PageObjects;
 using WebdriverTests.Utils;
 
@@ -31,8 +30,8 @@ namespace WebdriverTests.Pages
         [FindsBy(How = How.CssSelector, Using = SendButtonsCss)]
         private IList<IWebElement> sendButtons;
 
-        public string RecipientAddress => toInput.GetValue();
-        public string Subject => subjectInput.GetValue();
+        public string RecipientAddress => toInput.GetAttribute("value");
+        public string Subject => subjectInput.GetAttribute("value");
         public string ClassOfSendButton => sendButtons.First().GetAttribute("class");
 
         public EditorMailPage FillMailFields(string address, string subject, string message)
@@ -55,7 +54,6 @@ namespace WebdriverTests.Pages
 
         public string GetMessage()
         {
-            Browser.Driver.ImplicitlyWait(5);
             Browser.Driver.SwitchTo().Frame(editorFrame);
             string message = messageTextArea.Text;
             Browser.Driver.SwitchTo().DefaultContent();

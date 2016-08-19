@@ -1,12 +1,11 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Remote;
+﻿using OpenQA.Selenium.Remote;
 using WebdriverTests.Helpers;
 
 namespace WebdriverTests.Utils.DriverCreators
 {
     public abstract class WebDriverCreator
     {
-        public IWebDriver CreateDriver()
+        public CustomWebDriver CreateDriver()
         {
             if (!ConfigFileManager.UseSeleniumGrid)
                 return WebDriver;
@@ -20,10 +19,10 @@ namespace WebdriverTests.Utils.DriverCreators
                 DesiredCapabilities.SetCapability("accessKey", ConfigFileManager.SauceLabsAccessKey);
                 hubUri = ConfigFileManager.SauceLabsHubUri;
             }
-            return new RemoteWebDriver(hubUri, DesiredCapabilities);
+            return new CustomWebDriver(new RemoteWebDriver(hubUri, DesiredCapabilities));
         }
 
         protected abstract DesiredCapabilities DesiredCapabilities { get; }
-        protected abstract IWebDriver WebDriver { get; }
+        protected abstract CustomWebDriver WebDriver { get; }
     }
 }

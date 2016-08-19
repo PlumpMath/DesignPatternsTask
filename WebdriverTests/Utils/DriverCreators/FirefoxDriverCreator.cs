@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
+﻿using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
 
 namespace WebdriverTests.Utils.DriverCreators
@@ -7,6 +6,6 @@ namespace WebdriverTests.Utils.DriverCreators
     public class FirefoxDriverCreator : WebDriverCreator
     {
         protected override DesiredCapabilities DesiredCapabilities => DesiredCapabilities.Firefox();
-        protected override IWebDriver WebDriver => new FirefoxDriver();
+        protected override CustomWebDriver WebDriver => new CustomWebDriver(new FirefoxDriver());
     }
 }

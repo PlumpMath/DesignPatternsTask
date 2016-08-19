@@ -38,7 +38,7 @@ namespace WebdriverTests.Tests
         public virtual void OneTimeTearDown()
         {
             if (TestContext.CurrentContext.Result.Outcome.Status != TestStatus.Passed)
-                Browser.TakeScreenshot(TestContext.CurrentContext.Test.Name);
+                Browser.Driver.TakeScreenshot(TestContext.CurrentContext.Test.Name);
 
             MailPage.Logoff();
             Console.WriteLine("Close Browser..");
